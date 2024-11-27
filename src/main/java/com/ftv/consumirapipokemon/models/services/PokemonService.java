@@ -10,49 +10,49 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class PokemonService {
-    @Autowired
-    private RestTemplate restTemplate;
-    private final String apiUrlBase = "https://pokeapi.co/api/v2/pokemon/";
-
-    public List<Pokemon> getPokemons(Integer pagina) {
-        List<Pokemon> ListPokemons = new ArrayList<>();
-        int inicio = pagina * 10 - 9;
-        int fin = pagina * 10;
-        for (int i = inicio; inicio <= fin; i++) {
-            String urlApi = apiUrlBase + i;
-            ResponseEntity<Pokemon> response = restTemplate.exchange(urlApi, HttpMethod.GET, null, Pokemon.class);
-            ListPokemons.add(response.getBody());
-        }
-        return ListPokemons;
-    }
-}
-
-//
 //@Service
 //public class PokemonService {
-//
 //    @Autowired
 //    private RestTemplate restTemplate;
-//
 //    private final String apiUrlBase = "https://pokeapi.co/api/v2/pokemon/";
 //
-//    public List<Pokemon> getPokemons() {
-//
+//    public List<Pokemon> getPokemons(Integer pagina) {
 //        List<Pokemon> ListPokemons = new ArrayList<>();
-//
-//        for(int i = 1; i <= 10; i++) {
+//        int inicio = pagina * 10 - 9;
+//        int fin = pagina * 10;
+//        for (int i = inicio; inicio <= fin; i++) {
 //            String urlApi = apiUrlBase + i;
-//            ResponseEntity<Pokemon> response = restTemplate.exchange(
-//                    urlApi,
-//                    HttpMethod.GET,
-//                    null,
-//                    Pokemon.class
-//            );
+//            ResponseEntity<Pokemon> response = restTemplate.exchange(urlApi, HttpMethod.GET, null, Pokemon.class);
 //            ListPokemons.add(response.getBody());
 //        }
-//
 //        return ListPokemons;
 //    }
 //}
+
+
+@Service
+public class PokemonService {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private final String apiUrlBase = "https://pokeapi.co/api/v2/pokemon/";
+
+    public List<Pokemon> getPokemons() {
+
+        List<Pokemon> ListPokemons = new ArrayList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            String urlApi = apiUrlBase + i;
+            ResponseEntity<Pokemon> response = restTemplate.exchange(
+                    urlApi,
+                    HttpMethod.GET,
+                    null,
+                    Pokemon.class
+            );
+            ListPokemons.add(response.getBody());
+        }
+
+        return ListPokemons;
+    }
+}

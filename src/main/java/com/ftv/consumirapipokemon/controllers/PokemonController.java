@@ -14,11 +14,16 @@ public class PokemonController {
     private PokemonService pokemonService;
 
     @GetMapping("/")
-    public String getPokemons(Model model, @RequestParam(defaultValue = "1") Integer pagina) {
-        pokemonService.getPokemons(pagina).forEach(pokemon -> System.out.println(pokemon.toString()));
-        model.addAttribute("pokemons", pokemonService.getPokemons(pagina));
+    public String getPokemons(Model model) {
+        pokemonService.getPokemons().forEach(pokemon -> System.out.println(pokemon.toString()));
+        model.addAttribute("pokemons", pokemonService.getPokemons());
         return "index";
     }
 
-
+//    @GetMapping("/")
+//    public String getPokemons(Model model, @RequestParam(defaultValue = "1") Integer pagina) {
+//        pokemonService.getPokemons(pagina).forEach(pokemon -> System.out.println(pokemon.toString()));
+//        model.addAttribute("pokemons", pokemonService.getPokemons(pagina));
+//        return "index";
+//    }
 }
