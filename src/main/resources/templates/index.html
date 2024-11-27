@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+
+<section class="container py-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="poke : ${pokemons}">
+            <div class="card h-100">
+                <div class="card-body">
+                    <!-- Nombre del Pokémon -->
+                    <h5 class="card-title" th:text="${poke.name}"></h5>
+
+                    <!-- ID del Pokémon -->
+                    <p class="card-text">
+                        <strong>ID:</strong> <span th:text="${poke.id}"></span>
+                    </p>
+
+
+                    <!-- Imagen del Pokémon -->
+                    <!--                    <img th:src="${poke.sprites}" class="card-img-top" alt="Imagen de Pokémon">-->
+
+
+                    <!-- Experiencia base -->
+                    <p class="card-text">
+                        <strong>Base Experience:</strong> <span th:text="${poke.base_experience}"></span>
+                    </p>
+                    <!-- Sprites -->
+                    <p class="card-text">
+                        <img th:src="${poke.sprites.front_default}" alt="poke">
+                    </p>
+
+                    <!-- Habilidades -->
+                    <p class="card-text">
+                        <strong>Abilities:</strong>
+                    <ul>
+                        <li th:each="ability : ${poke.abilities}" th:text="${ability.ability.name}"></li>
+                    </ul>
+                    </p>
+
+                    <!-- Tipos -->
+                    <p class="card-text">
+                        <strong>Types:</strong>
+                    <ul>
+                        <li th:each="type : ${poke.types}" th:text="${type.type.name}"></li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
