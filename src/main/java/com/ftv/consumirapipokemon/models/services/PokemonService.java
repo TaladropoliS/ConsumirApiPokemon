@@ -18,9 +18,9 @@ public class PokemonService {
 
     public List<Pokemon> getPokemons(Integer pagina) {
         List<Pokemon> ListPokemons = new ArrayList<>();
-        int inicio = pagina * 10 - 9;
-        int fin = pagina * 10;
-        for (int i = inicio; inicio <= fin; i++) {
+        int inicio = (pagina * 10) - 9;
+        int fin = (pagina * 10);
+        for (int i = inicio; i <= fin; i++) {
             String urlApi = apiUrlBase + i;
             ResponseEntity<Pokemon> response = restTemplate.exchange(urlApi, HttpMethod.GET, null, Pokemon.class);
             ListPokemons.add(response.getBody());
