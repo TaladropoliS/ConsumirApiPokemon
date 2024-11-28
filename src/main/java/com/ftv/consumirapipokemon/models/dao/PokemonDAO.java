@@ -21,6 +21,7 @@ public class PokemonDAO {
     public List<Pokemon> getPokemons(Integer page) {
 
         List<Pokemon> ListPokemons = new ArrayList<>();
+
         int inicio = page * 10 - 9;
         int fin = page * 10;
         for (int i = inicio; i <= fin; i++) {
