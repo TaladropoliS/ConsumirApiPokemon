@@ -22,6 +22,7 @@ public class Pokemon {
         this.base_experience = base_experience;
         this.abilities = abilities;
         this.types = types;
+        this.sprites = sprites;
     }
 
     public Pokemon() {

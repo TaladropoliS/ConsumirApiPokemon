@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PokemonController {
@@ -15,15 +15,22 @@ public class PokemonController {
 
     @GetMapping("/")
     public String getPokemons(Model model) {
-        pokemonService.getPokemons().forEach(pokemon -> System.out.println(pokemon.toString()));
-        model.addAttribute("pokemons", pokemonService.getPokemons());
+        model.addAttribute("pokemons", pokemonService.getPokemons(1));
         return "index";
     }
 
-//    @GetMapping("/")
-//    public String getPokemons(Model model, @RequestParam(defaultValue = "1") Integer pagina) {
-//        pokemonService.getPokemons(pagina).forEach(pokemon -> System.out.println(pokemon.toString()));
-//        model.addAttribute("pokemons", pokemonService.getPokemons(pagina));
-//        return "index";
-//    }
+    @GetMapping("/{page}")
+    public String getPokemonsPage(@PathVariable int page, Model model) {
+        if (page < 1 || page > 102) {
+            return "redirect:/1";
+        }
+        model.addAttribute("titulo", "API Pokemon's");
+        model.addAttribute("pokemonsPage", pokemonService.getPokemons(page));
+        return "indexPage";
+    }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 }
